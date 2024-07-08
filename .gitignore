@@ -1,0 +1,148 @@
+# Ignore .idea directory and all subdirectories
+.idea/
+
+# Ignore Rider-specific project files
+*.sln.iml
+*.sln.ide/
+
+# Ignore VS Code configuration files
+.vscode/
+
+# Ignore build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Ignore publish directory
+[Pp]ublish/
+
+# Ignore compiled object files
+*.o
+*.obj
+*.lo
+*.slo
+
+# Ignore precompiled headers
+*.gch
+*.pch
+
+# Ignore compiled dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Ignore Fortran module files
+*.mod
+*.smod
+*.hm
+
+# Ignore compiled static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Ignore executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Ignore ASP.NET Core files
+project.lock.json
+project.fragment.lock.json
+artifacts/
+bin/
+obj/
+wwwroot/
+*.db
+*.bak
+*.ndf
+
+# Ignore SQLite database files
+*.db
+*.db-journal
+
+# Ignore SQL Server database files
+*.mdf
+*.ldf
+
+# Ignore Redis database files
+*.rdb
+*.log
+dump.rdb
+
+# Ignore NUNIT files
+*.VisualState.xml
+TestResult.xml
+
+# Ignore auto-generated files
+Generated_Code/
+
+# Ignore ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Ignore Entity Framework files
+*.jfm
+
+# Ignore user-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore Resharper files
+_ReSharper/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Ignore user-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
+
+# Ignore Mono auto-generated files
+mono_crash.*
+
+# Ignore Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Ignore folder config file
+Desktop.ini
+
+# Ignore Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Ignore Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Ignore Windows shortcuts
+*.lnk
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Linux directory file
+.directory
+
+# Ignore Rider specific files
+.idea/
+*.dotCover
+*.dotTrace
+*.dotMemory
+
