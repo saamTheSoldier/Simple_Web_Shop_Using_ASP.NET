@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Admin Panel";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>This is the admin panel I think?!.</p>
+
+@{//TODO: what the fuck is binding???
+}
+
+@model PajoPhone.Models.ListOfPhonesViewModel
+
+<h2>Phones</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Explanations</th>
+        <th>Color</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var phone in Model.Phones)
+    {
+        <tr>
+            <td>@phone.Name</td>
+            <td>@phone.Explanations</td>
+            <td>@phone.Color</td>
+            <td>@phone.Price</td>
+            <td>
+                EDIT | DELETE
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
