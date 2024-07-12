@@ -13,12 +13,12 @@ public class AdminPanelController : Controller
         new PhoneModel
         {
             Id = 2, Name = "Phone B", Explanations = "Description B", Color = "White", Price = 800,
-            ImagePath = "~/Images/58310e6f1f7829712ac07237cf5eddbcc24b6288_1690788174.webp"
+            ImagePath = "/Images/58310e6f1f7829712ac07237cf5eddbcc24b6288_1690788174.webp"
         },
         new PhoneModel
         {
             Id = 3, Name = "samphone", Explanations = "a good phone", Color = "black", Price = 1000,
-            ImagePath = "~/Images/aa6c900917f0cfb63c85c832d5ef68ccc8765209_1694525475.webp"
+            ImagePath = "/Images/aa6c900917f0cfb63c85c832d5ef68ccc8765209_1694525475.webp"
         }
     ];
 
@@ -59,12 +59,12 @@ public class AdminPanelController : Controller
         if (model.ImageFile != null)
         {
             var fileName = Path.GetFileName(model.ImageFile.FileName);
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images", fileName);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Images", fileName);
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 model.ImageFile.CopyTo(stream);
             }
-            phone.ImagePath = "~/Images/" + fileName;
+            phone.ImagePath = "/Images/" + fileName;
         }
 
         phone.Name = model.Name;
@@ -108,13 +108,13 @@ public class AdminPanelController : Controller
         {
             var fileName = Path.GetFileName(model.ImageFile.FileName);
  
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images", fileName);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Images", fileName);
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 model.ImageFile.CopyTo(stream);
             }
 
-            model.ImagePath = "~/Images/" + fileName;
+            model.ImagePath = "/Images/" + fileName;
         }
 
         var phone = new PhoneModel

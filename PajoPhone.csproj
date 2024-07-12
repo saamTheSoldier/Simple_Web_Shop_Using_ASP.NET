@@ -11,10 +11,42 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="wwwroot\Images\51ca4d6108835c0632fcae34d1f05a76081b8106_1707719127.webp" />
-      <None Include="wwwroot\Images\58310e6f1f7829712ac07237cf5eddbcc24b6288_1690788174.webp" />
-      <None Include="wwwroot\Images\aa6c900917f0cfb63c85c832d5ef68ccc8765209_1694525475.webp" />
-      <None Include="wwwroot\Images\bd7648d55ffe49a0596ac3668f4db41f7c790f6a_1696760508.webp" />
+      <Content Update="Images\51ca4d6108835c0632fcae34d1f05a76081b8106_1707719127.webp">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Images\95e9a7327d1f8650f13794a7c33917d9d130b987_1660478804.webp">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Images\58310e6f1f7829712ac07237cf5eddbcc24b6288_1690788174.webp">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Images\a8234e915f4f6ed119daac830e39eca031d62c2d_1705751969.webp">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Images\aa6c900917f0cfb63c85c832d5ef68ccc8765209_1694525475.webp">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Images\b3d660fd6a3946de6f822dc28455af8a9e22cd67_1691477422.webp">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Images\bd7648d55ffe49a0596ac3668f4db41f7c790f6a_1696760508.webp">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Images\ec9a962187e1f82cc47e7a148ef99ec1c6fd024d_1656423336.webp">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Images\e2dfa5857f437ae654721f8046b928583e430db8_1708358300.webp">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>
