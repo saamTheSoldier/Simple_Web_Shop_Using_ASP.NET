@@ -10,4 +10,11 @@
       <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="wwwroot\Images\51ca4d6108835c0632fcae34d1f05a76081b8106_1707719127.webp" />
+      <None Include="wwwroot\Images\58310e6f1f7829712ac07237cf5eddbcc24b6288_1690788174.webp" />
+      <None Include="wwwroot\Images\aa6c900917f0cfb63c85c832d5ef68ccc8765209_1694525475.webp" />
+      <None Include="wwwroot\Images\bd7648d55ffe49a0596ac3668f4db41f7c790f6a_1696760508.webp" />
+    </ItemGroup>
+
 </Project>

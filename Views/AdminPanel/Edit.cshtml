@@ -2,7 +2,7 @@
 
 <h2>Edit Phone</h2>
 
-@using (Html.BeginForm("EditPost" , "AdminPanel", FormMethod.Post))
+@using (Html.BeginForm("EditPost" , "AdminPanel", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(model => model.Id)
 
@@ -22,6 +22,25 @@
         @Html.LabelFor(model => model.Price)
         @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
     </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImageFile, "Upload Image")
+        <input type="file" name="ImageFile" class="form-control" id="imageFile" onchange="previewImage(event)" />
+        <br />
+        <img id="imagePreview" src="@Url.Content(Model.ImagePath)" width="200" height="200" />
+    </div>
     <button type="submit" class="btn btn-primary">Save</button>
     @Html.ActionLink("Back to List", "AdminPanel")
+}
+@section Scripts {
+    <script>
+        function previewImage(event) {
+            var input = event.target;
+            var reader = new FileReader();
+            reader.onload = function(){
+                var img = document.getElementById("imagePreview");
+                img.src = reader.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    </script>
 }

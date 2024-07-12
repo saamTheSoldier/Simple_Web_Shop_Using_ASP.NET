@@ -7,4 +7,6 @@ public class PhoneModel
     public string Explanations { get; set; }
     public string Color { get; set; }
     public int Price { get; set; }
+    public string ImagePath { get; set; }
+    public IFormFile ImageFile { get; set; }
 }

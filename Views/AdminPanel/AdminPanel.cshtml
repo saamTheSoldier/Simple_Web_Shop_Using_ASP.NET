@@ -22,23 +22,34 @@
         <th>Explanations</th>
         <th>Color</th>
         <th>Price</th>
+        <th>Image</th>
         <th>Actions</th>
     </tr>
     </thead>
     <tbody>
     @foreach (var phone in Model.Phones)
     {
-        <tr>
-            <td>@phone.Id</td>
-            <td>@phone.Name</td>
-            <td>@phone.Explanations</td>
-            <td>@phone.Color</td>
-            <td>@phone.Price</td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = phone.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = phone.Id })
-            </td>
-        </tr>
+    <tr>
+        <td>@phone.Id</td>
+        <td>@phone.Name</td>
+        <td>@phone.Explanations</td>
+        <td>@phone.Color</td>
+        <td>@phone.Price</td>
+        <td>
+            @if (!string.IsNullOrEmpty(phone.ImagePath))
+            {
+            <img src="@Url.Content(phone.ImagePath)" alt="Phone Image" style="max-width: 100px; max-height: 100px;" />
+            }
+            else
+            {
+            <span>No Image</span>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = phone.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = phone.Id })
+        </td>
+    </tr>
     }
     </tbody>
 </table>
