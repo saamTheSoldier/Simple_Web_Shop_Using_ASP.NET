@@ -24,12 +24,27 @@ You can see what I've supposed to do and what I've done in the section below:
     - [x] Playing with the template:
         - As I always say, playing with existing structures and messing around with things as amusement is the best way to learn (at least for me). Like when you've learned some mathematical concept, and to become more expert, there is no better way than thinking and solving many related problems. Same thing here. Time to do something real :))
     - [ ] Adding Admin panel
-        - [ ] Add Phone model
-        - [ ] Add view-models for the list page, edit, and create pages
-        - [ ] Add Controller for the admin page
+        - [x] Add Phone model
+          - For this I chose to go simple, even for Ids I didn't bother myself and used 
+          int and manually create them. Maybe when I add DB mechanism I change it to a 
+          proper auto Id generating method, for now my DB is a collection of models.
+        - [x] Add view-models for the list page, edit, and create pages
+          - It was not really necessarily. A simple List is my view model for main page of
+          admin panel and other pages simply handled in cshtml view files.
+        - [x] Add Controller for the admin page
+          - Done. But I have to admit sth. As I don't know shit about HTML not hard to tell
+          I don't know what I'm doing with cshtml files. So I use Chat-GPT for help, I hate to
+          use it when I'm about to learn and experience sth new, but what choice did I have??
+          But I ensure you I did my best to understand whatever been done on those shit page.
+            (mostly asked the GPT himself to explain it. Yes I'm guilty of using too modern tech.
+          May souls of great geeks forgive me). Next step would be adding mechanism to handle phone 
+          pictures, then implementing customer side, then struggling with EF and connect this
+          shit to a DB.
     - [ ] Implementing Customer side
         - [ ] Implement the basic structure for the shop page
         - [ ] Add filter options and a search bar maybe?
+    - [ ] Connect Project to a DB
+
 
 3. [ ] **Phase 2: Make the web app more general**
     - [ ] Design the features and complete this file :_))
