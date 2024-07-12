@@ -7,7 +7,9 @@
 
 @{//TODO: what the fuck is binding???
 }
-
+<p>
+    @Html.ActionLink("Create New", "Create", "AdminPanel", new { @class = "btn btn-primary" })
+</p>
 @model PajoPhone.Models.ListOfPhonesViewModel
 
 <h2>Phones</h2>
@@ -15,6 +17,7 @@
 <table class="table">
     <thead>
     <tr>
+        <th>Id</th>
         <th>Name</th>
         <th>Explanations</th>
         <th>Color</th>
@@ -26,12 +29,14 @@
     @foreach (var phone in Model.Phones)
     {
         <tr>
+            <td>@phone.Id</td>
             <td>@phone.Name</td>
             <td>@phone.Explanations</td>
             <td>@phone.Color</td>
             <td>@phone.Price</td>
             <td>
-                EDIT | DELETE
+                @Html.ActionLink("Edit", "Edit", new { id = phone.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = phone.Id })
             </td>
         </tr>
     }

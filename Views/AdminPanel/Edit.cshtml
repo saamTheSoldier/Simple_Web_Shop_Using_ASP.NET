@@ -1,0 +1,27 @@
+@model PajoPhone.Models.PhoneModel
+
+<h2>Edit Phone</h2>
+
+@using (Html.BeginForm("EditPost" , "AdminPanel", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Explanations)
+        @Html.TextBoxFor(model => model.Explanations, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Color)
+        @Html.TextBoxFor(model => model.Color, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price)
+        @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    @Html.ActionLink("Back to List", "AdminPanel")
+}
