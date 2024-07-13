@@ -23,7 +23,7 @@ You can see what I've supposed to do and what I've done in the section below:
 2. [ ] **Phase 1: Implement the main structure of the online shop**
     - [x] Playing with the template:
         - As I always say, playing with existing structures and messing around with things as amusement is the best way to learn (at least for me). Like when you've learned some mathematical concept, and to become more expert, there is no better way than thinking and solving many related problems. Same thing here. Time to do something real :))
-    - [ ] Adding Admin panel
+    - [x] Adding Admin panel
         - [x] Add Phone model
           - For this I chose to go simple, even for Ids I didn't bother myself and used 
           int and manually create them. Maybe when I add DB mechanism I change it to a 
@@ -40,11 +40,39 @@ You can see what I've supposed to do and what I've done in the section below:
           May souls of great geeks forgive me). Next step would be adding mechanism to handle phone 
           pictures, then implementing customer side, then struggling with EF and connect this
           shit to a DB.
+        - [x] Implementing image file showing mechanism
+          - So I added some line of codes to show some pictures I downloaded from some Iranian
+          online shop, [Digikala](https://www.digikala.com/). First I added some Image path attribute
+          to the PhoneModel. Trying to show pictures saved as static files. At that point I realize that
+          the program identify the "~/" path as "/wwwwroot/". So I added a directory and successfully showed
+          pictures placed in that in some pages. Then I feel the need to upload pictures and even edit existing
+          pictures. Using the help of two of my best friends Google and GPT found out I can use IFormFile to handle
+          input file to upload. BTW I had hard time to finally find out I should add last part in this code:
+          ```csharp
+            @using (Html.BeginForm("CreatePost" , "AdminPanel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+          ```
+          in the beginning of my view cshtml file. I mean the ```new { enctype = "multipart/form-data" }``` part. Somehow this
+          make your view able to handle IForm entities like uploaded files.
+          - After adjusting everything I think that this is not good enough, I want to serve files in 
+          what directory I desire. So asking my friends found out there is a way that is quite simple,
+          in configuration at Program.cs in my case, I should make a `staticFileOption` then use it to serve
+          files. So I moved my Image file location to somewhere else. There is much to do to make this
+          better, e.g. adding data validation, adding authentication and authorization etc. But let's make
+          it to a working point then we think about it.
     - [ ] Implementing Customer side
         - [ ] Implement the basic structure for the shop page
         - [ ] Add filter options and a search bar maybe?
     - [ ] Connect Project to a DB
 
+    - [ ] Additional challenges:
+      - [ ] Filtering challenge:
+        - Besides to have regular price filtering, add an option to input a price(p) and a number(n), then show
+        nearest n product in price comparing to p.
+      - [ ] Selective Colors:
+        - For color attribute add this option to select it from a selectable field.
+      - [ ] Best type for defining price:
+        - There are double, decimal, int, float etc. types we can use for the numeric field such as price.
+        In case of Price, which one is better and why?
 
 3. [ ] **Phase 2: Make the web app more general**
     - [ ] Design the features and complete this file :_))
