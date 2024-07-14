@@ -5,7 +5,6 @@ using PajoPhone.Models;
 namespace PajoPhone.Controllers;
 
 public class HomeController : Controller
-//this is a comment
 {
     private readonly ILogger<HomeController> _logger;
 
@@ -16,12 +15,23 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        return View(PhoneModel.GetPhoneList());
     }
 
     public IActionResult Privacy()
     {
         return View();
+    }
+
+    public IActionResult Detail(int id)
+    {
+        var phone = PhoneModel.GetPhoneList().FirstOrDefault(p => p.Id == id);
+        if (phone == null)
+        {
+            return NotFound();
+        }
+
+        return View(phone);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

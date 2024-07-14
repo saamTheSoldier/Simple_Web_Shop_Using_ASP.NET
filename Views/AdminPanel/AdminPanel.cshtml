@@ -10,9 +10,9 @@
 <p>
     @Html.ActionLink("Create New", "Create", "AdminPanel", new { @class = "btn btn-primary" })
 </p>
-@model PajoPhone.Models.ListOfPhonesViewModel
+@model PajoPhone.Models.PhoneModel
 
-<h2>Phones</h2>
+<h2>PhoneModels</h2>
 
 <table class="table">
     <thead>
@@ -38,7 +38,7 @@
         <td>
             @if (!string.IsNullOrEmpty(phone.ImagePath))
             {
-            <img src="@Url.Content(phone.ImagePath)" alt="Phone Image" style="max-width: 100px; max-height: 100px;" />
+            <img src="@Url.Content(phone.ImagePath)" alt="PhoneModel Image" style="max-width: 100px; max-height: 100px;" />
             }
             else
             {

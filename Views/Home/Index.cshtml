@@ -1,8 +1,63 @@
-﻿@{
+﻿@model IEnumerable<PajoPhone.Models.PhoneModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <h2 class="title">Main Page</h2>
+    <div class="grid">
+        @foreach (var phone in Model)
+        {
+            <a href="@Url.Action("Detail", "Home", new { id = phone.Id })" class="grid-item">
+                <img src="@phone.ImagePath" alt="@phone.Name" class="phone-image"/>
+                <div class="phone-info">
+                    <p class="phone-name">@phone.Name</p>
+                    <p class="phone-price">@phone.Price.ToString("C0")</p>
+                </div>
+            </a>
+        }
+    </div>
 </div>
+
+<style>
+    .container {
+        padding: 20px;
+    }
+    .title {
+        text-align: right;
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: black;
+    }
+    .grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .grid-item {
+        border: 1px solid black;
+        border-radius: 5px;
+        overflow: hidden;
+        width: calc(33.333% - 20px);
+        box-sizing: border-box;
+        background: transparent;
+        text-decoration: none; 
+        color: inherit; 
+    }
+    .phone-image {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    .phone-info {
+        padding: 10px;
+        text-align: center;
+        color: black;
+        background: transparent;
+    }
+    .phone-name, .phone-price {
+        margin: 0;
+        font-size: 18px;
+    }
+</style>
