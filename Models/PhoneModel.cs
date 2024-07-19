@@ -10,7 +10,7 @@ public class PhoneModel
     public ColorEnum Color { get; set; }
     public decimal Price { get; set; }
     [NotMapped] public IFormFile ImageFile { get; set; }
-    public byte[] ImageData { get; set; }
+    public byte[]? ImageData { get; set; }
 }
 
 public enum ColorEnum
