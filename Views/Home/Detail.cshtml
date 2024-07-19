@@ -6,10 +6,25 @@
 
 <div class="container">
     <h2>@Model.Name</h2>
-    <img src="@Url.Content(Model.ImagePath)" alt="@Model.Name" />
-    <p><strong>Price:</strong> @Model.Price.ToString("C0")</p>
-    <p><strong>Color:</strong> @Model.Color</p>
-    <p><strong>Description:</strong> @Model.Explanations</p>
+    @if (Model.ImageData != null && Model.ImageData.Length > 0)
+    {
+        var base64Image = Convert.ToBase64String(Model.ImageData);
+        var imgSrc = $"data:image/jpeg;base64,{base64Image}";
+        <img src="@imgSrc" alt="@Model.Name"/>
+    }
+    else
+    {
+        <img src="@Url.Content("/Images/DefaultPhone.png")" alt="@Model.Name"/>
+    }
+    <p>
+        <strong>Price:</strong> @Model.Price.ToString("C0")
+    </p>
+    <p>
+        <strong>Color:</strong> @Model.Color
+    </p>
+    <p>
+        <strong>Description:</strong> @Model.Explanations
+    </p>
 </div>
 
 <style>

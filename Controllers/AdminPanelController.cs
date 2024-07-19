@@ -1,77 +1,91 @@
 using Microsoft.AspNetCore.Mvc;
+using PajoPhone.Data;
 using PajoPhone.Models;
-using Controller = Microsoft.AspNetCore.Mvc.Controller;
-using PajoPhone.Models;
-namespace PajoPhone.Controllers;
 
+namespace PajoPhone.Controllers;
 
 public class AdminPanelController : Controller
 {
+    private readonly ApplicationDbContext _context;
+
+    public AdminPanelController(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
     public IActionResult AdminPanel()
     {
-        var viewModel = new PhoneModel
-        {
-            Phones = PhoneModel.GetPhoneList()
-        };
-        return View(viewModel);
+        var phones = _context.PhoneModels.ToList();
+        return View(phones);
     }
 
     public IActionResult Edit(int id)
     {
-        var phone = PhoneModel.GetPhoneList().FirstOrDefault(phone => phone.Id == id);
+        var phone = _context.PhoneModels.Find(id);
         if (phone == null)
         {
             return NotFound();
         }
+
         return View(phone);
     }
 
-    public IActionResult EditPost(PhoneModel model)
+    public IActionResult EditPost(int id, PhoneModel model)
     {
-        var phone = PhoneModel.GetPhoneList().FirstOrDefault(p => p.Id == model.Id);
+        if (id != model.Id)
+        {
+            return NotFound();
+        }
+
+        var phone = _context.PhoneModels.Find(id);
         if (phone == null)
         {
             return NotFound();
         }
+
         if (model.ImageFile != null)
         {
-            var fileName = Path.GetFileName(model.ImageFile.FileName);
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Images", fileName);
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                model.ImageFile.CopyTo(stream);
-            }
-            phone.ImagePath = "/Images/" + fileName;
+            using var memoryStream = new MemoryStream();
+            model.ImageFile.CopyToAsync(memoryStream);
+            model.ImageData = memoryStream.ToArray();
         }
 
         phone.Name = model.Name;
         phone.Explanations = model.Explanations;
         phone.Color = model.Color;
         phone.Price = model.Price;
-        return RedirectToAction("AdminPanel");
+        phone.ImageData = model.ImageData;
+
+        _context.Update(phone);
+        _context.SaveChanges();
+
+        return RedirectToAction(nameof(AdminPanel));
     }
-    
+
+
     public IActionResult Delete(int id)
     {
-        var phone = PhoneModel.GetPhoneList().FirstOrDefault(p => p.Id == id);
+        var phone = _context.PhoneModels.Find(id);
         if (phone == null)
         {
             return NotFound();
         }
+
         return View(phone);
     }
 
     public IActionResult DeleteConfirmed(int id)
     {
-        var phone = PhoneModel.GetPhoneList().FirstOrDefault(p => p.Id == id);
+        var phone = _context.PhoneModels.Find(id);
         if (phone == null)
         {
             return NotFound();
         }
 
-        PhoneModel.removePhoneFromPhoneList(phone);
+        _context.PhoneModels.Remove(phone);
+        _context.SaveChanges();
 
-        return RedirectToAction("AdminPanel");
+        return RedirectToAction(nameof(AdminPanel));
     }
 
     public IActionResult Create()
@@ -83,27 +97,16 @@ public class AdminPanelController : Controller
     {
         if (model.ImageFile != null)
         {
-            var fileName = Path.GetFileName(model.ImageFile.FileName);
- 
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Images", fileName);
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            using (var memoryStream = new MemoryStream())
             {
-                model.ImageFile.CopyTo(stream);
+                model.ImageFile.CopyToAsync(memoryStream);
+                model.ImageData = memoryStream.ToArray();
             }
-
-            model.ImagePath = "/Images/" + fileName;
         }
 
-        var phone = new PhoneModel
-        {
-            Id = PhoneModel.GetNewId(),
-            Name = model.Name,
-            Color = model.Color,
-            Explanations = model.Explanations,
-            Price = model.Price,
-            ImagePath = model.ImagePath
-        };
-        PhoneModel.AddPhoneToPhoneList(phone);
-        return RedirectToAction("AdminPanel");
+        _context.Add(model);
+        _context.SaveChanges();
+
+        return RedirectToAction(nameof(AdminPanel));
     }
 }

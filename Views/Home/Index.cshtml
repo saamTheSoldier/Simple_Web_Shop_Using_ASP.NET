@@ -10,7 +10,16 @@
         @foreach (var phone in Model)
         {
             <a href="@Url.Action("Detail", "Home", new { id = phone.Id })" class="grid-item">
-                <img src="@phone.ImagePath" alt="@phone.Name" class="phone-image"/>
+                @if (phone.ImageData != null && phone.ImageData.Length > 0)
+                {
+                    var base64Image = Convert.ToBase64String(phone.ImageData);
+                    var imgSrc = $"data:image/jpeg;base64,{base64Image}";
+                    <img src="@imgSrc" alt="Image" class="phone-image"/>
+                }
+                else
+                {
+                    <img src="@Url.Content("/Images/DefaultPhone.png")" alt="@phone.Name" class="phone-image"/>
+                }
                 <div class="phone-info">
                     <p class="phone-name">@phone.Name</p>
                     <p class="phone-price">@phone.Price.ToString("C0")</p>

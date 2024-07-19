@@ -2,7 +2,7 @@
 
 <h2>Edit PhoneModel</h2>
 
-@using (Html.BeginForm("EditPost" , "AdminPanel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("EditPost", "AdminPanel", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(model => model.Id)
 
@@ -24,13 +24,24 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.ImageFile, "Upload Image")
-        <input type="file" name="ImageFile" class="form-control" id="imageFile" onchange="previewImage(event)" />
-        <br />
-        <img id="imagePreview" src="@Url.Content(Model.ImagePath)" width="200" height="200" />
+        <input type="file" name="ImageFile" class="form-control" id="imageFile" onchange="previewImage(event)"/>
+        <br/>
+        @* <img id="imagePreview" src="@Url.Content(Model.ImagePath)" width="200" height="200" /> *@
+        @if (Model.ImageData != null && Model.ImageData.Length > 0)
+        {
+            var base64Image = Convert.ToBase64String(Model.ImageData);
+            var imgSrc = $"data:image/jpeg;base64,{base64Image}";
+            <img id="imagePreview" src="@imgSrc" alt="Image"/>
+        }
+        else
+        {
+            <img id="imagePreview" src="@Url.Content("/Images/DefaultPhone.png")" alt="@Model.Name"/>
+        }
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
     @Html.ActionLink("Back to List", "AdminPanel")
 }
+
 @section Scripts {
     <script>
         function previewImage(event) {

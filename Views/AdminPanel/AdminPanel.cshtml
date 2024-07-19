@@ -5,12 +5,13 @@
 
 <p>This is the admin panel I think?!.</p>
 
-@{//TODO: what the fuck is binding???
+@{
+    //TODO: what the fuck is binding???
 }
 <p>
     @Html.ActionLink("Create New", "Create", "AdminPanel", new { @class = "btn btn-primary" })
 </p>
-@model PajoPhone.Models.PhoneModel
+@model IEnumerable<PajoPhone.Models.PhoneModel>
 
 <h2>PhoneModels</h2>
 
@@ -27,29 +28,31 @@
     </tr>
     </thead>
     <tbody>
-    @foreach (var phone in Model.Phones)
+    @foreach (var phone in Model)
     {
-    <tr>
-        <td>@phone.Id</td>
-        <td>@phone.Name</td>
-        <td>@phone.Explanations</td>
-        <td>@phone.Color</td>
-        <td>@phone.Price</td>
-        <td>
-            @if (!string.IsNullOrEmpty(phone.ImagePath))
-            {
-            <img src="@Url.Content(phone.ImagePath)" alt="PhoneModel Image" style="max-width: 100px; max-height: 100px;" />
-            }
-            else
-            {
-            <span>No Image</span>
-            }
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = phone.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = phone.Id })
-        </td>
-    </tr>
+        <tr>
+            <td>@phone.Id</td>
+            <td>@phone.Name</td>
+            <td>@phone.Explanations</td>
+            <td>@phone.Color</td>
+            <td>@phone.Price</td>
+            <td>
+                @if (phone.ImageData != null && phone.ImageData.Length > 0)
+                {
+                    var base64Image = Convert.ToBase64String(phone.ImageData);
+                    var imgSrc = $"data:image/jpeg;base64,{base64Image}";
+                    <img src="@imgSrc" alt="Image" style="max-width: 100px; max-height: 100px;"/>
+                }
+                else
+                {
+                    <img src="@Url.Content("/Images/DefaultPhone.png")" alt="@phone.Name" style="max-width: 100px; max-height: 100px;"/>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = phone.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = phone.Id })
+            </td>
+        </tr>
     }
     </tbody>
 </table>

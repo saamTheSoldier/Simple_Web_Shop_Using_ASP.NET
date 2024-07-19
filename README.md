@@ -73,7 +73,7 @@ You can see what I've supposed to do and what I've done in the section below:
       - [ ] Best type for defining price:
         - There are double, decimal, int, float etc. types we can use for the numeric field such as price.
         In case of Price, which one is better and why?
-      - [ ] Store images in the DB.
+      - [x] Store images in the DB.
 
 3. [ ] **Phase 2: Make the web app more general**
     - [ ] Design the features and complete this file :_))
