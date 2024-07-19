@@ -2,18 +2,21 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    var currentFilter = ViewData["CurrentFilter"] as string;
+    var minPrice = ViewData["MinPrice"] as decimal?;
+    var maxPrice = ViewData["MaxPrice"] as decimal?;
 }
 
 <div class="container">
     <h2 class="title">Main Page</h2>
-    
     <form method="get" action="@Url.Action("Index", "Home")">
-        <div class="form-group">
-            <input type="text" name="searchString" class="form-control" placeholder="Search by name..." value="@ViewData["CurrentFilter"]" />
-            <button type="submit" class="btn btn-primary">Search</button>
-        </div>
+        <input type="text" name="searchString" value="@currentFilter" placeholder="Search by name..."/>
+        <br/>
+        <label for="minPrice">Price Range:</label>
+        <input type="number" name="minPrice" step="0.01" min="0" value="@minPrice" placeholder="Min Price"/>
+        <input type="number" name="maxPrice" step="0.01" min="0" value="@maxPrice" placeholder="Max Price"/>
+        <button type="submit">Search</button>
     </form>
-    
     <div class="grid">
         @foreach (var phone in Model)
         {
@@ -47,9 +50,6 @@
         font-size: 24px;
         color: black;
     }
-    .form-group {
-        margin-bottom: 20px;
-    }
     .grid {
         display: flex;
         flex-wrap: wrap;
@@ -62,8 +62,8 @@
         width: calc(33.333% - 20px);
         box-sizing: border-box;
         background: transparent;
-        text-decoration: none; 
-        color: inherit; 
+        text-decoration: none;
+        color: inherit;
     }
     .phone-image {
         width: 100%;

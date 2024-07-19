@@ -16,9 +16,15 @@ public class HomeController : Controller
         _context = context;
     }
 
-    public IActionResult Index(string searchString)
+    public IActionResult Index(string searchString, decimal? minPrice, decimal? maxPrice)
     {
         ViewData["CurrentFilter"] = searchString;
+
+        var minPriceDb = _context.PhoneModels.Min(p => p.Price);
+        var maxPriceDb = _context.PhoneModels.Max(p => p.Price);
+
+        ViewData["MinPrice"] = minPrice ?? minPriceDb;
+        ViewData["MaxPrice"] = maxPrice ?? maxPriceDb;
 
         var phones = from p in _context.PhoneModels
             select p;
@@ -28,8 +34,14 @@ public class HomeController : Controller
             phones = phones.Where(p => p.Name.ToLower().Contains(searchString.ToLower()));
         }
 
+        if (minPrice.HasValue && maxPrice.HasValue)
+        {
+            phones = phones.Where(p => p.Price >= minPrice.Value && p.Price <= maxPrice.Value);
+        }
+
         return View(phones.ToList());
     }
+
 
     public IActionResult Privacy()
     {
