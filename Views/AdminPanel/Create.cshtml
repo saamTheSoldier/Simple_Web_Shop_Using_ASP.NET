@@ -14,7 +14,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.Color)
-        @Html.TextBoxFor(model => model.Color, new { @class = "form-control" })
+        @Html.DropDownListFor(model => model.Color, new SelectList(Enum.GetValues(typeof(PajoPhone.Models.ColorEnum))), new { @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.Price)

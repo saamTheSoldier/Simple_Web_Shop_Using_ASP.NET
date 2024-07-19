@@ -48,13 +48,14 @@ public class AdminPanelController : Controller
             using var memoryStream = new MemoryStream();
             model.ImageFile.CopyToAsync(memoryStream);
             model.ImageData = memoryStream.ToArray();
+            phone.ImageData = model.ImageData;
+
         }
 
         phone.Name = model.Name;
         phone.Explanations = model.Explanations;
         phone.Color = model.Color;
         phone.Price = model.Price;
-        phone.ImageData = model.ImageData;
 
         _context.Update(phone);
         _context.SaveChanges();

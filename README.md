@@ -68,9 +68,9 @@ You can see what I've supposed to do and what I've done in the section below:
       - [ ] Filtering challenge:
         - Besides to have regular price filtering, add an option to input a price(p) and a number(n), then show
         nearest n product in price comparing to p.
-      - [ ] Selective Colors:
+      - [x] Selective Colors:
         - For color attribute add this option to select it from a selectable field.
-      - [ ] Best type for defining price:
+      - [x] Best type for defining price:
         - There are double, decimal, int, float etc. types we can use for the numeric field such as price.
         In case of Price, which one is better and why?
       - [x] Store images in the DB.
