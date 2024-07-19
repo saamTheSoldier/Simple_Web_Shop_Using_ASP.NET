@@ -16,9 +16,19 @@ public class HomeController : Controller
         _context = context;
     }
 
-    public IActionResult Index()
+    public IActionResult Index(string searchString)
     {
-        return View(_context.PhoneModels.ToList());
+        ViewData["CurrentFilter"] = searchString;
+
+        var phones = from p in _context.PhoneModels
+            select p;
+
+        if (!string.IsNullOrEmpty(searchString))
+        {
+            phones = phones.Where(p => p.Name.ToLower().Contains(searchString.ToLower()));
+        }
+
+        return View(phones.ToList());
     }
 
     public IActionResult Privacy()
@@ -28,7 +38,7 @@ public class HomeController : Controller
 
     public IActionResult Detail(int id)
     {
-        var phone = _context.PhoneModels.Find(id);    
+        var phone = _context.PhoneModels.Find(id);
         if (phone == null)
         {
             return NotFound();
