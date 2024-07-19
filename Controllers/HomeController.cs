@@ -16,15 +16,17 @@ public class HomeController : Controller
         _context = context;
     }
 
-    public IActionResult Index(string searchString, decimal? minPrice, decimal? maxPrice)
+    public IActionResult Index(string searchString, decimal? minPrice, decimal? maxPrice, decimal? targetPrice,
+        int? numberOfNearest)
     {
         ViewData["CurrentFilter"] = searchString;
-
         var minPriceDb = _context.PhoneModels.Min(p => p.Price);
         var maxPriceDb = _context.PhoneModels.Max(p => p.Price);
-
         ViewData["MinPrice"] = minPrice ?? minPriceDb;
         ViewData["MaxPrice"] = maxPrice ?? maxPriceDb;
+        ViewData["TargetPrice"] = targetPrice;
+        ViewData["NumberOfNearest"] = numberOfNearest;
+
 
         var phones = from p in _context.PhoneModels
             select p;
@@ -37,6 +39,14 @@ public class HomeController : Controller
         if (minPrice.HasValue && maxPrice.HasValue)
         {
             phones = phones.Where(p => p.Price >= minPrice.Value && p.Price <= maxPrice.Value);
+        }
+
+
+        if (targetPrice.HasValue && numberOfNearest.HasValue)
+        {
+            phones = phones
+                .OrderBy(p => Math.Abs(p.Price - targetPrice.Value))
+                .Take(numberOfNearest.Value);
         }
 
         return View(phones.ToList());

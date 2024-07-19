@@ -5,6 +5,8 @@
     var currentFilter = ViewData["CurrentFilter"] as string;
     var minPrice = ViewData["MinPrice"] as decimal?;
     var maxPrice = ViewData["MaxPrice"] as decimal?;
+    var targetPrice = ViewData["TargetPrice"] as decimal?;
+    var numberOfNearest = ViewData["NumberOfNearest"] as int?;
 }
 
 <div class="container">
@@ -15,6 +17,11 @@
         <label for="minPrice">Price Range:</label>
         <input type="number" name="minPrice" step="0.01" min="0" value="@minPrice" placeholder="Min Price"/>
         <input type="number" name="maxPrice" step="0.01" min="0" value="@maxPrice" placeholder="Max Price"/>
+        <br/>
+        <label for="targetPrice">Nearest Price:</label>
+        <input type="number" name="targetPrice" step="0.01" min="0" value="@targetPrice" placeholder="Target Price"/>
+        <label for="numberOfNearest">Number of Nearest:</label>
+        <input type="number" name="numberOfNearest" min="1" value="@numberOfNearest" placeholder="Number"/>
         <button type="submit">Search</button>
     </form>
     <div class="grid">
