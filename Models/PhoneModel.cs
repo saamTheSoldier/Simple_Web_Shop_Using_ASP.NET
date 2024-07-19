@@ -8,7 +8,7 @@ public class PhoneModel
     public string Name { get; set; }
     public string Explanations { get; set; }
     public string Color { get; set; }
-    public int Price { get; set; }
+    public decimal Price { get; set; }
     [NotMapped] public IFormFile ImageFile { get; set; }
     public byte[] ImageData { get; set; }
 }

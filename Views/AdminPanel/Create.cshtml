@@ -2,7 +2,7 @@
 
 <h2>Add a new PhoneModel</h2>
 
-@using (Html.BeginForm("CreatePost" , "AdminPanel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("CreatePost", "AdminPanel", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="form-group">
         @Html.LabelFor(model => model.Name)
@@ -18,17 +18,18 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.Price)
-        @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+        @Html.TextBoxFor(model => model.Price, new { @class = "form-control", type = "number", step = "0.01" })
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.ImageFile, "Upload Image")
-        <input type="file" name="ImageFile" class="form-control" id="imageFile" onchange="previewImage(event)" />
-        <br />
-        <img id="imagePreview" src="#" alt="Image Preview" width="200" height="200" style="display: none;" />
+        <input type="file" name="ImageFile" class="form-control" id="imageFile" onchange="previewImage(event)"/>
+        <br/>
+        <img id="imagePreview" src="#" alt="Image Preview" width="200" height="200" style="display: none;"/>
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
     @Html.ActionLink("Back to List", "AdminPanel")
 }
+
 @section Scripts {
     <script>
         function previewImage(event) {
