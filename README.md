@@ -116,6 +116,7 @@ You can see what I've supposed to do and what I've done in the section below:
  - Next Important feature I wish we had is Authentication and Authorization stuff. No need to
     give you speech about that importance. We should add model for users and mechanism for Auth.
 
+### For Phase2 step by step report see the phase2_report.md file.
 
 ## Repository
 You can find the full project repository at the following link:
