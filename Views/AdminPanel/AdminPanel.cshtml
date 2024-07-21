@@ -9,7 +9,7 @@
     //TODO: what the fuck is binding???
 }
 <p>
-    @Html.ActionLink("Create New", "Create", "AdminPanel", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Create New", "ShowCreateForm", "AdminPanel", new { @class = "btn btn-primary" })
 </p>
 @model IEnumerable<PajoPhone.Models.PhoneModel>
 
@@ -49,8 +49,8 @@
                 }
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = phone.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = phone.Id })
+                @Html.ActionLink("Edit", "ShowEditForm", new { id = phone.Id }) |
+                @Html.ActionLink("Delete", "ShowDeleteConfirmation", new { id = phone.Id })
             </td>
         </tr>
     }

@@ -1,8 +1,8 @@
 @model PajoPhone.Models.PhoneModel
 
-<h2>Edit PhoneModel</h2>
+<h2>Edit Form</h2>
 
-@using (Html.BeginForm("EditPost", "AdminPanel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("ProcessEdit", "AdminPanel", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(model => model.Id)
 

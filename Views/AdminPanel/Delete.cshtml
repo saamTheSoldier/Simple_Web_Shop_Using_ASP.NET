@@ -1,6 +1,6 @@
 @model PajoPhone.Models.PhoneModel
 
-<h2>Delete PhoneModel</h2>
+<h2>ShowDeleteConfirmation PhoneModel</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
@@ -34,10 +34,10 @@
 
     </dl>
 
-    @using (Html.BeginForm("DeleteConfirmed", "AdminPanel", FormMethod.Post))
+    @using (Html.BeginForm("ProcessDelete", "AdminPanel", FormMethod.Post))
     {
         @Html.HiddenFor(model => model.Id)
-        <button type="submit" class="btn btn-danger">Delete</button>
+        <button type="submit" class="btn btn-danger">ShowDeleteConfirmation</button>
         @Html.ActionLink("Back to List", "AdminPanel")
     }
 </div>

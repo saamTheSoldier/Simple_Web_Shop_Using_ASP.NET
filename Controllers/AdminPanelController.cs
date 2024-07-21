@@ -19,7 +19,7 @@ public class AdminPanelController : Controller
         return View(phones);
     }
 
-    public IActionResult Edit(int id)
+    public IActionResult ShowEditForm(int id)
     {
         var phone = _context.PhoneModels.Find(id);
         if (phone == null)
@@ -27,10 +27,10 @@ public class AdminPanelController : Controller
             return NotFound();
         }
 
-        return View(phone);
+        return View("Edit", phone);
     }
 
-    public IActionResult EditPost(int id, PhoneModel model)
+    public IActionResult ProcessEdit(int id, PhoneModel model)
     {
         if (id != model.Id)
         {
@@ -49,7 +49,6 @@ public class AdminPanelController : Controller
             model.ImageFile.CopyToAsync(memoryStream);
             model.ImageData = memoryStream.ToArray();
             phone.ImageData = model.ImageData;
-
         }
 
         phone.Name = model.Name;
@@ -64,7 +63,7 @@ public class AdminPanelController : Controller
     }
 
 
-    public IActionResult Delete(int id)
+    public IActionResult ShowDeleteConfirmation(int id)
     {
         var phone = _context.PhoneModels.Find(id);
         if (phone == null)
@@ -72,10 +71,10 @@ public class AdminPanelController : Controller
             return NotFound();
         }
 
-        return View(phone);
+        return View("Create", phone);
     }
 
-    public IActionResult DeleteConfirmed(int id)
+    public IActionResult ProcessDelete(int id)
     {
         var phone = _context.PhoneModels.Find(id);
         if (phone == null)
@@ -89,12 +88,12 @@ public class AdminPanelController : Controller
         return RedirectToAction(nameof(AdminPanel));
     }
 
-    public IActionResult Create()
+    public IActionResult ShowCreateForm()
     {
-        return View();
+        return View("Create");
     }
 
-    public IActionResult CreatePost(PhoneModel model)
+    public IActionResult ProcessCreate(PhoneModel model)
     {
         if (model.ImageFile != null)
         {
